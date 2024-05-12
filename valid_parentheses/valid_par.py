@@ -36,20 +36,18 @@ print(test_string_1)
 def matching(input, check):
     current_bracket = ''
     for test in input:
-       if test != ' ':
-           if test == '[' or test == '{' or test == '(': 
-            current_bracket = test
-           print(f'we are on character {test}')
-           print(f'this is the current index {test_string_1.find(test)}')
-           print(f'we currently have the open bracket of {current_bracket}')
-           if current_bracket == '[' and test == ']':
-            print(f'Valid format')
-           elif current_bracket == '(' and test == ')':
-            print(f'Valid format')
-           elif current_bracket == '{' and test == '}':
-            print(f'Valid format')
-           else: 
-              print(f'invalid format')
-
+        if test != ' ':
+            if test == '[' or test == '{' or test == '(':
+                current_bracket = test  # Update the current open bracket
+                print(f'we are on character {test}')
+                print(f'this is the current index {test_string_1.find(test)}')
+                print(f'we currently have the open bracket of {current_bracket}')
+            elif test == ']' or test == '}' or test == ')':
+                if (current_bracket == '[' and test != ']') or \
+                   (current_bracket == '{' and test != '}') or \
+                   (current_bracket == '(' and test != ')'):
+                    print("Invalid format")
+                    return
+    print("Valid format")
 
 matching(test_string_1,'}')
