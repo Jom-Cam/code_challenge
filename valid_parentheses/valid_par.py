@@ -33,21 +33,25 @@ current_bracket = ''
 
 print(test_string_1)
 
-def matching(input, check):
+def matching(input):
     current_bracket = ''
-    for test in input:
-        if test != ' ':
-            if test == '[' or test == '{' or test == '(':
-                current_bracket = test  # Update the current open bracket
-                print(f'we are on character {test}')
-                print(f'this is the current index {test_string_1.find(test)}')
+    for check in input:
+        if check != ' ':
+            if check == '[' or check == '{' or check == '(':
+                current_bracket = check  # Update the current open bracket
+                print(f'we are on character {check}')
                 print(f'we currently have the open bracket of {current_bracket}')
-            elif test == ']' or test == '}' or test == ')':
-                if (current_bracket == '[' and test != ']') or \
-                   (current_bracket == '{' and test != '}') or \
-                   (current_bracket == '(' and test != ')'):
+            elif check == ']' or check == '}' or check == ')':
+                if (current_bracket == '[' and check != ']') or \
+                   (current_bracket == '{' and check != '}') or \
+                   (current_bracket == '(' and check != ')'):
                     print("Invalid format")
                     return
+                current_bracket = ''  # Reset current_bracket after closing the bracket
+    if current_bracket:  # If there are unclosed opening brackets
+        print("Invalid format, bracket found but not closed")
+        return
+    
     print("Valid format")
 
-matching(test_string_1,'}')
+matching(test_string_1)
