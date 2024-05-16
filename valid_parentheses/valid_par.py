@@ -35,13 +35,17 @@ print(test_string_1)
 
 def matching(input):
     current_bracket = ''
+    opening_brackets = "([{"
+    closing_brackets = ")]}"
+    
     for check in input:
         if check != ' ':
-            if check == '[' or check == '{' or check == '(':
+            if check in opening_brackets:
                 current_bracket = check  # Update the current open bracket
-                print(f'we are on character {check}')
-                print(f'we currently have the open bracket of {current_bracket}')
-            elif check == ']' or check == '}' or check == ')':
+            elif check in closing_brackets:
+                if not current_bracket:  # If no opening bracket found
+                    print("Invalid format, closed bracket found but not opened")
+                    return
                 if (current_bracket == '[' and check != ']') or \
                    (current_bracket == '{' and check != '}') or \
                    (current_bracket == '(' and check != ')'):
@@ -49,7 +53,7 @@ def matching(input):
                     return
                 current_bracket = ''  # Reset current_bracket after closing the bracket
     if current_bracket:  # If there are unclosed opening brackets
-        print("Invalid format, bracket found but not closed")
+        print("Invalid format, open bracket found but not closed")
         return
     
     print("Valid format")
