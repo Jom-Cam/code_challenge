@@ -23,8 +23,7 @@
 # 1 <= s.length <= 104
 # s consists of parentheses only '()[]{}'.
 
-test_string_1 = ' [] {} ()'
-current_bracket = ''
+test_string_1 = ' ] {} ()'
 # string_match = { 
 #                 '[' : ']',
 #                 '{' : '}',
@@ -38,24 +37,29 @@ def matching(input):
     opening_brackets = "([{"
     closing_brackets = ")]}"
     
-    for check in input:
-        if check != ' ':
-            if check in opening_brackets:
-                current_bracket = check  # Update the current open bracket
-            elif check in closing_brackets:
-                if not current_bracket:  # If no opening bracket found
-                    print("Invalid format, closed bracket found but not opened")
-                    return
-                if (current_bracket == '[' and check != ']') or \
-                   (current_bracket == '{' and check != '}') or \
-                   (current_bracket == '(' and check != ')'):
-                    print("Invalid format")
-                    return
-                current_bracket = ''  # Reset current_bracket after closing the bracket
+    for x in input:
+
+        if input_start_with_closing(x, closing_brackets, current_bracket):
+            print('Invalid')
+            return
+        if x != ' ' and x in opening_brackets:
+            current_bracket = x  # Update the current open bracket
+        else :
+            if (current_bracket == '[' and x != ']') or \
+                (current_bracket == '{' and x != '}') or \
+                (current_bracket == '(' and x != ')'):
+                print("Invalid format")
+                return
+            current_bracket = ''  # Reset current_bracket after closing the bracket
+
     if current_bracket:  # If there are unclosed opening brackets
         print("Invalid format, open bracket found but not closed")
         return
     
     print("Valid format")
+
+def input_start_with_closing(input, closing_brackets, current_bracket):
+     return input in closing_brackets and current_bracket == ''
+
 
 matching(test_string_1)
