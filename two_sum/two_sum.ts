@@ -36,7 +36,22 @@
 // find one that does not give back a decimal and note its location
 // use the remaining number to loop throug the array of numbers again
 // return with the 2 number locations. 
+   
 
-function twoSum(nums: number[], target: number): number[] {
+  const input = [2,7,11,15]
+  const target = 9
+
+function twoSum(nums, target) {
     
+    const my_indexes =  []
+
+    for (let i = 0; i < nums.length; i++) {
+        let comparitive_num = target - nums[i];
+        console.log('this is the current itteration ${i} ')
+        console.log(nums[i])
+        console.log(comparitive_num)
+
+    }
 };
+
+twoSum(input, target)
