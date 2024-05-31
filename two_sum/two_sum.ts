@@ -43,13 +43,17 @@
 
 function twoSum(nums, target) {
     
-    const my_indexes =  []
+    let my_indexes =  []
+    let comparitive_num = 0
 
     for (let i = 0; i < nums.length; i++) {
-        let comparitive_num = target - nums[i];
-        console.log('this is the current itteration ${i} ')
-        console.log(nums[i])
-        console.log(comparitive_num)
+        let comparitive_num = target
+        if (target - nums[i] > 0) {
+          my_indexes.push(parseInt(nums[i]))
+          console.log(`this is the current itteration ${i} `)
+          console.log(nums[i])
+          console.log(comparitive_num)
+        }
 
     }
 };
